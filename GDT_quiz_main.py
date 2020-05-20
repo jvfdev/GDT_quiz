@@ -16,6 +16,9 @@ from PIL import Image, ImageTk
 #                 'datum_required': "No"}
 
 class Window(Frame):
+
+    
+
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.master = master
@@ -31,6 +34,18 @@ class Window(Frame):
         file_menu = Menu(gdt_menu)
         file_menu.add_command(label="Exit", command=self.client_exit)
         gdt_menu.add_cascade(label="File", menu=file_menu)
+        
+        
+        quiz_prompt_label = Label(self, text="Choose your quiz type:")
+        quiz_prompt_label.pack(anchor=CENTER)
+        quiz_type = IntVar()
+        radio_button1 = Radiobutton(self, text="View image, write name", variable=quiz_type, value=1)
+        radio_button1.pack(anchor=CENTER)
+        radio_button2 = Radiobutton(self, text="View name, select image", variable=quiz_type, value=2)
+        radio_button2.pack(anchor=CENTER)
+        # radio_button.place(x=0,y=0)
+
+
 
     def client_exit(self):
         root.quit()
