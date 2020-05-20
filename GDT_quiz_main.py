@@ -14,10 +14,12 @@ from PIL import Image, ImageTk
 #                 'image_file_name': 'straightness.png',
 #                 'Type_of_tolerance': 'Form',
 #                 'datum_required': "No"}
+root = Tk()
+
+quiz_type = IntVar()
 
 class Window(Frame):
 
-    
 
     def __init__(self, master=None):
         Frame.__init__(self, master)
@@ -35,22 +37,33 @@ class Window(Frame):
         file_menu.add_command(label="Exit", command=self.client_exit)
         gdt_menu.add_cascade(label="File", menu=file_menu)
         
-        
-        quiz_prompt_label = Label(self, text="Choose your quiz type:")
+        # quiz_type = IntVar()
+
+        quiz_prompt_label = Label(self, text="\nChoose your quiz type:\n")
         quiz_prompt_label.pack(anchor=CENTER)
-        quiz_type = IntVar()
+        
         radio_button1 = Radiobutton(self, text="View image, write name", variable=quiz_type, value=1)
         radio_button1.pack(anchor=CENTER)
         radio_button2 = Radiobutton(self, text="View name, select image", variable=quiz_type, value=2)
         radio_button2.pack(anchor=CENTER)
-        # radio_button.place(x=0,y=0)
+        quiz_type.set(1)
 
+        space_label = Label(self, text="")
+        space_label.pack()
+
+        start_button= Button(self, text="START QUIZ", command=self.start_quiz)
+        start_button.pack()
+
+        
 
 
     def client_exit(self):
         root.quit()
 
-root = Tk()
+    def start_quiz(self):
+        print(quiz_type.get())
+    
+
 root.geometry("800x600")
 app = Window(root)
 root.mainloop()
